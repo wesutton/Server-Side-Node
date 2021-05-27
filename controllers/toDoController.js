@@ -1,29 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const { query } = require('express');
+// const toDo = require('../models/toDo');
 const sequelize = require('../db');
-const toDo = require('../models/toDo');
-const ToDo = sequelize.import('../models/toDo.js') ;
-// const jwt = require("jsonwebtoken");
+const ToDo = require('../models/toDo');
 
-// router.get("/practice", function(req, res){
-//     res.send("This is a practice route")
-// })
+router.get("/practice", function(req, res){
+    res.send("This is a practice route")
+})
 
-router.create('/add', function(req, res){
+router.post('/add', (req, res) =>{
     ToDo.add({
-        item: req.body.toDo.item,
+        task: req.body.toDo.task,
         priority: req.body.toDo.priority,
         dueDate: req.body.toDo.dueDate,
         dueTime: req.body.toDo.dueTime
     })
-    .then (
-        function postSuccess(toDo){
-            res.json({
-                toDo: toDo,
-                message: "To Do item added successfully"
-            });
-        }
-    )
+    .then (toDo=> res.status(200).json({ message: 'Item Created', toDo}))
     .catch(err => res.status(500).json({error: err}))
 });
+
+
+router.get('/list', (req, res) => {
+    ToDo.findAll() 
+
+.then(toDo => res.status(200).json({ message: 'Item Created', toDo}))
+.catch(err => res.status(500).json({ message: 'Item Failed', error: err}))
+})
+
+router.put('/items/:id', (req, res) => {
+    ToDo.update(req.body, { where: { id: req.params.id }})
+.then(updated => res.status(200).json({ message: 'Update successful', updated}))
+.catch(err => res.status(500).json({ message: 'Update failed!', err }))
+})
+
+
+router.delete('/delete/:id', (req, res) => {
+    ToDo.destroy({ where: { id: req.params.id } })
+.then(deleted => res.status(200).json({ message: `Item  #${ req.params.id } has been deleted`, deleted}))
+.catch(err => res.status(500).json({ message: 'Error', error: err }))
+})
  module.exports = router;

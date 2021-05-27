@@ -1,23 +1,20 @@
-const sequelize = require('sequelize');
+// const sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 const database = require('../db');
 
 
-const toDo = database.define('toDo', {
-    item: {
-        type: sequelize.STRING,
+module.exports = database.define('toDo', {
+    task: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     priority: {
-        type: sequelize.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,
     },
     dueDate:{
-        type: sequelize.DATE,
+        type: DataTypes.DATE,
     } ,
     dueTime: {
-        type: sequelize.TIME,
+        type: DataTypes.TIME,
     }
-});
-
-
-module.exports = toDo;
+})
