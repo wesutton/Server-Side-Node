@@ -4,7 +4,7 @@ const database = require('../db');
 
 
 module.exports = database.define('toDo', {
-    task: {
+    item: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -12,7 +12,7 @@ module.exports = database.define('toDo', {
         type: DataTypes.STRING,
     },
     dueDate:{
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
     } ,
     dueTime: {
         type: DataTypes.TIME,
