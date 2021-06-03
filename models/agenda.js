@@ -15,7 +15,7 @@ module.exports = db.define('agendas', {
         allowNull: false,
     },
     priority: {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.STRING, 
         allowNull: false,
     },
     item: {
