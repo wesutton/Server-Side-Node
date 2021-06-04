@@ -4,8 +4,7 @@ const app = express();
 const cors = require("cors");
 const sequelize = require('./db');
 const user = require("./controllers/usercontroller");
-
-
+const toDo = require("./controllers/toDoController");
 const agenda = require('./controllers/agendaController');
 
 sequelize.sync();
