@@ -13,8 +13,10 @@ app.use(require('./middleware/headers'));
 
 app.use(cors())
 app.use(express.json());
-app.use('/agenda', agenda);
 app.use('/user', user);
+app.use('/agenda', agenda);
+app.use('/toDo', toDo)
+
 		
 app.listen(3000,()=> console.log("Listening on port 3000"));
 
