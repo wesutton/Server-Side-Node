@@ -6,15 +6,18 @@ const database = require('../db');
 module.exports = database.define('toDo', {
     item: {
         type: DataTypes.STRING,
-        allowNull: false,
+        omitNull: false,
     },
     priority: {
         type: DataTypes.STRING,
+        omitNull: true,
     },
     dueDate:{
         type: DataTypes.DATEONLY,
+        omitNull: true,
     } ,
     dueTime: {
         type: DataTypes.TIME,
+        omitNull: true,
     }
 })
